@@ -1,7 +1,7 @@
 import React from "react";
-import homeImage from "../media/home.jpg";
+import homeImage from "../media/setup2.jpg";
 import setup from "../media/setup.jpg"; // Example image path
-import setup2 from "../media/setup2.jpg";
+import setup2 from "../media/home2.jpg";
 import setup3 from "../media/setup3.jpg";
 import setup5 from "../media/setup5.jpg";
 import toys from "../media/toys.jpg";
@@ -118,7 +118,7 @@ const Home = () => {
                 component="img"
                 src={item.img}
                 alt={item.title}
-                sx={{ width: "100%", height: "500px", objectFit: "cover" }}
+                sx={{ width: "100%", height: "900px", objectFit: "cover" }}
               />
             </Paper>
           ))}

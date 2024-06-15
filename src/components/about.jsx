@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Typography, Box, Divider } from "@mui/material";
-import elizabethImage from "../media/mom.jpg"; // Adjust the path as needed
+import elizabethImage from "../media/momgrace.jpg"; // Adjust the path as needed
 
 const About = () => {
   return (
@@ -25,9 +25,9 @@ const About = () => {
             alt="Elizabeth Sowers"
             style={{
               width: "100%",
-              maxWidth: "300px",
+              maxWidth: "400px",
               height: "auto",
-              borderRadius: "50%",
+              borderRadius: "30%",
               display: "block",
               margin: "0 auto"
             }}
@@ -53,7 +53,7 @@ const About = () => {
             been a blessing for so many people, including myself. You can
             usually catch me roller skating out on the floor helping with
             displays, or helping out with the process in the back at both
-            locations.
+            locations. Also, meet the future owner of MLR Grace!
           </Typography>
         </Box>
       </Box>
