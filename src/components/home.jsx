@@ -6,6 +6,7 @@ import setup3 from "../media/setup3.jpg";
 import setup5 from "../media/setup5.jpg";
 import toys from "../media/toys.jpg";
 import toys2 from "../media/toys2.jpg"; // Example image path
+import policyImage from "../media/policy.png"; // Policy image path
 import Carousel from "react-material-ui-carousel";
 import {
   Typography,
@@ -13,8 +14,12 @@ import {
   Button,
   Container,
   Paper,
-  Divider
+  Divider,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails
 } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Home = () => {
   const carouselItems = [
@@ -79,6 +84,26 @@ const Home = () => {
         </Box>
       </Container>
       <Container sx={{ textAlign: "center", mt: 8 }}>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography variant="h5">
+              Click Here to view our consignment Policy
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Box>
+              <img
+                src={policyImage}
+                alt="Policy"
+                style={{ maxWidth: "100%", height: "auto" }}
+              />
+            </Box>
+          </AccordionDetails>
+        </Accordion>
         <Divider sx={{ width: "80%", my: 4 }} />
         <Typography variant="h5" component="h3" gutterBottom>
           Contact Us
