@@ -1,0 +1,49 @@
+/* consign.css */
+
+/* Container for centering the calendar */
+.consign-container {
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Custom styles for the calendar */
+.react-calendar {
+  border: 2px solid #3794fe; /* Change the border color */
+  border-radius: 24px; /* Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow */
+  padding: 16px;
+  background-color: #f5f5f5; /* Background color */
+}
+
+.react-calendar__navigation button {
+  color: #3794fe; /* Change the navigation buttons color */
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #3794fe; /* Change the color of weekend days */
+}
+
+.react-calendar__tile--active {
+  background-color: grey !important; /* Active day background color */
+  color: white !important; /* Active day text color */
+}
+
+.react-calendar__tile--now {
+  background: #3794fe !important; /* Today's date background color */
+  color: black !important; /* Today's date text color */
+}
+
+.react-calendar__tile--unavailable {
+  background: #c8e066; /* Unavailable date background color */
+  color: #3794fe; /* Unavailable date text color */
+}
+
+.react-calendar__tile--unavailable.admin {
+  pointer-events: auto !important; /* Make unavailable dates clickable for admin */
+}
+
+/* green #c8e066 */
+/* blue #3794fe */

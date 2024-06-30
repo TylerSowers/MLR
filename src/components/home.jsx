@@ -84,7 +84,7 @@ const Home = () => {
         </Box>
       </Container>
       <Container sx={{ textAlign: "center", mt: 8 }}>
-        <Accordion>
+        {/* <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -103,7 +103,7 @@ const Home = () => {
               />
             </Box>
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */}
         <Divider sx={{ width: "80%", my: 4 }} />
         <Typography variant="h5" component="h3" gutterBottom>
           Contact Us
