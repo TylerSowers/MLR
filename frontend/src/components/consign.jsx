@@ -38,7 +38,7 @@ const Consign = () => {
           <strong>The Consignment Period:</strong> All items remain on the floor
           for <strong>90 days.</strong> After this time items that have not sold
           become property of MLR Consignment and may be donated to local
-          churches in the area. Items priced over <strong>$25</strong> maybe
+          churches in the area. Items priced over <strong>$25</strong> may be
           requested to pick up at the end of the consignment period with a 48
           hour notice.
         </>
