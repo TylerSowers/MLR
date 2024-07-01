@@ -32,7 +32,7 @@
 }
 
 .react-calendar__tile--now {
-  background: #3794fe !important; /* Today's date background color */
+  background: grey !important; /* Today's date background color */
   color: black !important; /* Today's date text color */
 }
 
