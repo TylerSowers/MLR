@@ -13,7 +13,9 @@ const Consign = ({ token, isAdmin }) => {
 
   const fetchUnavailableDates = async () => {
     try {
-      const response = await axios.get("http://10.0.0.181:5000/api/dates");
+      const response = await axios.get(
+        "https://mlr-backend.vercel.app/api/dates"
+      );
       setUnavailableDates(response.data.map((item) => new Date(item.date)));
     } catch (error) {
       console.error("Error fetching dates:", error);
@@ -28,7 +30,7 @@ const Consign = ({ token, isAdmin }) => {
 
       // Toggle availability
       await axios.post(
-        "http://localhost:5000/api/dates",
+        "https://mlr-backend.vercel.app/api/dates",
         { date },
         {
           headers: { Authorization: token }
