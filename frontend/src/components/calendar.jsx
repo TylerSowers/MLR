@@ -13,7 +13,9 @@ const Consign = ({ token }) => {
 
   const fetchUnavailableDates = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/dates");
+      const response = await axios.get(
+        "https://mlr-backend.vercel.app/api/dates"
+      );
       setUnavailableDates(response.data.map((item) => new Date(item.date)));
     } catch (error) {
       console.error("Error fetching dates:", error);
@@ -23,7 +25,7 @@ const Consign = ({ token }) => {
   const handleDateClick = async (date) => {
     try {
       await axios.post(
-        "http://localhost:5000/api/dates",
+        "https://mlr-backend.vercel.app/api/dates",
         { date },
         {
           headers: {
