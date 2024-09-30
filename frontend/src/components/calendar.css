@@ -31,10 +31,10 @@
   color: white !important; /* Active day text color */
 }
 
-/* .react-calendar__tile--now {
-  background: grey !important; Today's date background color 
-  color: black !important;  Today's date text color 
-} */
+.react-calendar__tile--now {
+  background: #f5f5f5 !important;
+  color: black !important;
+}
 
 .react-calendar__tile--unavailable {
   background: #c8e066; /* Unavailable date background color */
