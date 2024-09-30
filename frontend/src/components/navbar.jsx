@@ -25,7 +25,7 @@ const Navbar = () => {
     { text: "Home", link: "/" },
     { text: "About Us", link: "/about" },
     { text: "Consign", link: "/consign" }
-    // { text: "Login", link: "/login" }
+    //{ text: "Login", link: "/login" }
   ];
 
   return (

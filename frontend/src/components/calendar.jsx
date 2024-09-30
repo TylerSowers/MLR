@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import "./calendar.css";
 import axios from "axios";
 
-const Consign = ({ token, isAdmin }) => {
+const Consign = ({ token }) => {
   const [unavailableDates, setUnavailableDates] = useState([]);
 
   useEffect(() => {
@@ -13,9 +13,7 @@ const Consign = ({ token, isAdmin }) => {
 
   const fetchUnavailableDates = async () => {
     try {
-      const response = await axios.get(
-        "https://mlr-backend.vercel.app/api/dates"
-      );
+      const response = await axios.get("http://localhost:5000/api/dates");
       setUnavailableDates(response.data.map((item) => new Date(item.date)));
     } catch (error) {
       console.error("Error fetching dates:", error);
@@ -24,20 +22,15 @@ const Consign = ({ token, isAdmin }) => {
 
   const handleDateClick = async (date) => {
     try {
-      const isUnavailable = unavailableDates.some(
-        (d) => new Date(d).getTime() === date.getTime()
-      );
-
-      // Toggle availability
       await axios.post(
-        "https://mlr-backend.vercel.app/api/dates",
+        "http://localhost:5000/api/dates",
         { date },
         {
-          headers: { Authorization: token }
+          headers: {
+            Authorization: `Bearer ${token || localStorage.getItem("token")}`
+          }
         }
       );
-
-      // Fetch updated unavailable dates after modification
       fetchUnavailableDates();
     } catch (error) {
       console.error("Error updating date:", error);
@@ -49,12 +42,7 @@ const Consign = ({ token, isAdmin }) => {
       const isUnavailable = unavailableDates.some(
         (d) => new Date(d).getTime() === date.getTime()
       );
-
-      return isUnavailable
-        ? isAdmin
-          ? "react-calendar__tile--unavailable admin"
-          : "react-calendar__tile--unavailable"
-        : null;
+      return isUnavailable ? "react-calendar__tile--unavailable" : null;
     }
   };
 

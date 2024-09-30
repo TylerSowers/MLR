@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,8 +14,11 @@ const Login = ({ setToken }) => {
         username,
         password
       });
-      setToken(response.data.token);
+      const { token } = response.data;
+      setToken(token);
+      localStorage.setItem("token", token); // Store token in localStorage
       alert("Login successful");
+      navigate("/consign"); // Redirect to consign after login
     } catch (error) {
       console.error("Login error:", error);
       alert("Invalid credentials");

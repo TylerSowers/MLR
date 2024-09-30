@@ -16,8 +16,8 @@ const Consign = () => {
     {
       text: (
         <>
-          <strong>Walk-In Days/Times: </strong> Mondays 9-4 & Wednesdays 9-6:45.{" "}
-          <strong>30 Item Limit</strong>
+          <strong>Walk-In Days/Times: </strong> Mondays 9-3:45 & Wednesdays
+          9-6:45. <strong>30 Item Limit</strong>
         </>
       )
     },
