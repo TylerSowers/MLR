@@ -51,6 +51,8 @@ const Consign = ({ token }) => {
   return (
     <div className="consign-container">
       <h2>Walk-In Dates Highlighted in Green</h2>
+      <br />
+      ***WALK-INS CANCELED WED OCT. 9TH WILL RESUME OCT 21ST***
       <Calendar onClickDay={handleDateClick} tileClassName={tileClassName} />
     </div>
   );
