@@ -22,9 +22,9 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { text: "Home", link: "/" },
+    { text: "Contact Us", link: "/contact" },
     { text: "About Us", link: "/about" },
-    { text: "Consign", link: "/consign" }
+    { text: "Consign", link: "/" }
     //{ text: "Login", link: "/login" }
   ];
 

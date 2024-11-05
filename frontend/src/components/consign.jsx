@@ -7,7 +7,10 @@ import {
   Paper,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  Box,
+  Button,
+  Divider
 } from "@mui/material";
 import Calendar from "./calendar";
 
@@ -131,6 +134,50 @@ const Consign = () => {
         <Typography variant="body1" component="div">
           **Consignment policy subject to change**
         </Typography>
+        <Container sx={{ textAlign: "center", mt: 4 }}>
+          <Typography variant="h3" component="h2" gutterBottom>
+            Check Your Account Balance
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 3,
+              mt: 3
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              href="http://mlr.peeps2go.com:9090/act?fbclid=IwAR0ZSa37tYvyTBDjP-Wkg0AWcIjvADZk_JJ4vqqieXQO8VOvOgSyN6EQkBE"
+              target="_blank"
+              sx={{
+                padding: "16px 48px",
+                fontSize: "18px",
+                minWidth: "300px",
+                borderRadius: "50px"
+              }}
+            >
+              MLR Manchester
+            </Button>
+            <Divider sx={{ width: "80%", my: 2 }} />
+            <Button
+              variant="contained"
+              color="primary"
+              href="http://mlr2.peeps2go.com:9090/act?fbclid=IwAR2X4wGN3BUk-eCQc4Wc3I8KCgLDq8mwgynbvsmW9d4Wa57HYOHBGIcFpdg"
+              target="_blank"
+              sx={{
+                padding: "16px 48px",
+                fontSize: "18px",
+                minWidth: "300px",
+                borderRadius: "50px"
+              }}
+            >
+              MLR Red Lion
+            </Button>
+          </Box>
+        </Container>
       </Paper>
     </Container>
   );

@@ -4,7 +4,6 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./components/home";
 import About from "./components/about";
-import Contact from "./components/contact";
 import Login from "./components/login";
 import Consign from "./components/consign";
 
@@ -16,11 +15,10 @@ const App = () => {
       <Navbar />
       <div style={{ flex: "1" }}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
-          <Route path="/consign" element={<Consign token={token} />} />
+          <Route path="/" element={<Consign token={token} />} />
         </Routes>
       </div>
       <Footer />
