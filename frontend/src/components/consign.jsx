@@ -19,14 +19,6 @@ const Consign = () => {
     {
       text: (
         <>
-          <strong>Walk-In Days/Times: </strong> Mondays 9-3:45 & Wednesdays
-          9-6:45. <strong>30 Item Limit</strong>
-        </>
-      )
-    },
-    {
-      text: (
-        <>
           <strong>How the Money works:</strong> Once an item sells, you will get
           50% of the selling price. Your money can be used as store credit to
           purchase items any time. You may cash your account once a month ONLY
