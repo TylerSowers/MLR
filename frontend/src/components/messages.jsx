@@ -30,7 +30,7 @@ const Message = ({ token }) => {
   const fetchMessages = async () => {
     try {
       const response = await axios.get(
-        "http://https://mlr-backend.vercel.app/api/messages",
+        "https://mlr-backend.vercel.app/api/messages",
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -44,7 +44,7 @@ const Message = ({ token }) => {
   const handleAddMessage = async () => {
     try {
       await axios.post(
-        "http://https://mlr-backend.vercel.app/api/messages",
+        "https://mlr-backend.vercel.app/api/messages",
         { content: newMessage },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -58,7 +58,7 @@ const Message = ({ token }) => {
   const handleDeleteMessage = async () => {
     try {
       await axios.delete(
-        `http://https://mlr-backend.vercel.app/api/messages/${messageToDelete._id}`,
+        `https://mlr-backend.vercel.app/api/messages/${messageToDelete._id}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -73,7 +73,7 @@ const Message = ({ token }) => {
   const handleEditMessage = async () => {
     try {
       await axios.patch(
-        `http://https://mlr-backend.vercel.app/api/messages/${editMessageId}`,
+        `https://mlr-backend.vercel.app/api/messages/${editMessageId}`,
         { content: editContent },
         { headers: { Authorization: `Bearer ${token}` } }
       );

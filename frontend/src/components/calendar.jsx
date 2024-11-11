@@ -26,8 +26,8 @@ const LiveCalendar = ({ token }) => {
   const fetchUnavailableDates = async () => {
     try {
       const [manchesterResponse, redLionResponse] = await Promise.all([
-        axios.get("http://https://mlr-backend.vercel.app/api/dates"),
-        axios.get("http://https://mlr-backend.vercel.app/api/rldates")
+        axios.get("https://mlr-backend.vercel.app/api/dates"),
+        axios.get("https://mlr-backend.vercel.app/api/rldates")
       ]);
 
       setManchesterDates(manchesterResponse.data);
@@ -50,7 +50,7 @@ const LiveCalendar = ({ token }) => {
 
     try {
       await axios.post(
-        `http://10.0.0.181:5000${endpoint}`,
+        `https://mlr-backend.vercel.app/api${endpoint}`,
         { date: dateToAdd },
         {
           headers: {
@@ -76,7 +76,7 @@ const LiveCalendar = ({ token }) => {
     const dateToRemove = selectedDate;
 
     try {
-      await axios.delete(`http://10.0.0.181:5000${endpoint}`, {
+      await axios.delete(`https://mlr-backend.vercel.app/api${endpoint}`, {
         data: { date: dateToRemove },
         headers: {
           Authorization: `Bearer ${token || localStorage.getItem("token")}`

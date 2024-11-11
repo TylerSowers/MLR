@@ -19,7 +19,7 @@ const Login = ({ setToken }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://https://mlr-backend.vercel.app/api/login",
+        "https://mlr-backend.vercel.app/api/login",
         {
           username,
           password
