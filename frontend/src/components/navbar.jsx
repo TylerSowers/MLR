@@ -12,9 +12,10 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import logo from "../media/logo.png"; // Adjust the path as needed
+import Button from "@mui/material/Button";
+import logo from "../media/logo.png";
 
-const Navbar = () => {
+const Navbar = ({ token, setToken }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = (open) => () => {
@@ -24,9 +25,14 @@ const Navbar = () => {
   const menuItems = [
     { text: "Contact Us", link: "/contact" },
     { text: "About Us", link: "/about" },
-    { text: "Consign", link: "/" }
-    //{ text: "Login", link: "/login" }
+    { text: "How It Works", link: "/" }
   ];
+
+  const handleLogout = () => {
+    setToken(null);
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
 
   return (
     <>
@@ -50,12 +56,6 @@ const Navbar = () => {
               alt="Logo"
               src={logo}
             />
-            <Typography
-              variant="h4"
-              sx={{ marginLeft: 1, color: "#c8e066", fontWeight: "bold" }}
-            >
-              MLR
-            </Typography>
           </Box>
           <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
             {menuItems.map((item, index) => (
@@ -73,6 +73,16 @@ const Navbar = () => {
                 )}
               </React.Fragment>
             ))}
+            {token && (
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleLogout}
+                sx={{ marginLeft: 2 }}
+              >
+                Logout
+              </Button>
+            )}
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -95,7 +105,7 @@ const Navbar = () => {
           "& .MuiDrawer-paper": {
             width: "100%",
             height: "auto",
-            top: 110, // Adjust the top offset if needed
+            top: 110,
             backgroundColor: "#3794fe"
           }
         }}
@@ -115,6 +125,11 @@ const Navbar = () => {
                 {index < menuItems.length - 1 && <Divider />}
               </React.Fragment>
             ))}
+            {token && (
+              <ListItem button onClick={handleLogout}>
+                <ListItemText primary="Logout" />
+              </ListItem>
+            )}
           </List>
         </Box>
       </Drawer>

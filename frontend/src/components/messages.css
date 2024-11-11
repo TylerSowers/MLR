@@ -1,0 +1,36 @@
+/* src/styles/Message.css */
+
+.customer-messages-container {
+  padding: 16px;
+  /* background-image: url("../media/setup3.jpg"); */
+  background-color: #c8e066;
+  background-size: cover;
+  background-position: center;
+  min-height: 30vh;
+  border-radius: 8px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+ul {
+  list-style: none; /* No bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.announcements-title {
+  color: #000000;
+  font-family: "Arial", sans-serif; /* Change to your preferred font */
+  font-size: 2rem; /* Adjust the font size as needed */
+  text-align: center; /* Center the title */
+  margin-bottom: 16px; /* Add space below the title */
+}
+
+.message-item {
+  background-color: white;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #555;
+}

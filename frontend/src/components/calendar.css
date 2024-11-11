@@ -1,14 +1,5 @@
 /* consign.css */
 
-/* Container for centering the calendar */
-.consign-container {
-  display: flex;
-  padding: 20px;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 /* Custom styles for the calendar */
 .react-calendar {
   border: 2px solid #3794fe; /* Change the border color */
@@ -16,8 +7,52 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow */
   padding: 16px;
   background-color: #f5f5f5; /* Background color */
+  display: block; /* Make the calendar block-level to allow centering */
+  margin: 0 auto; /* Center horizontally */
 }
 
+/* Center the overall container */
+.consign-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  padding: 20px;
+}
+
+/* Flexbox layout for the calendar wrapper */
+.calendar-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Limiting max width */
+  margin: 0 auto; /* Center the wrapper in the container */
+}
+
+/* Styling for each individual calendar container */
+.calendar-container {
+  width: 100%;
+  max-width: 600px; /* Limit calendar width to 600px */
+  margin-bottom: 20px; /* Space between calendars */
+  text-align: center; /* Centers the titles */
+}
+
+/* Responsiveness: On larger screens, show calendars side by side */
+@media (min-width: 768px) {
+  .calendar-wrapper {
+    flex-direction: row; /* Stack the calendars side by side */
+    justify-content: center; /* Center the calendars horizontally */
+  }
+
+  .calendar-container {
+    width: 48%; /* Makes each calendar 48% of the container width */
+    margin-bottom: 0; /* Remove margin for side-by-side layout */
+  }
+}
+
+/* Navigation button styling */
 .react-calendar__navigation button {
   color: #3794fe; /* Change the navigation buttons color */
 }
@@ -37,13 +72,16 @@
 }
 
 .react-calendar__tile--unavailable {
-  background: #c8e066; /* Unavailable date background color */
-  color: #3794fe; /* Unavailable date text color */
+  background: #f5f5f5 !important; /* Default background */
+  color: #3794fe; /* Common text color for unavailable days */
 }
 
-.react-calendar__tile--unavailable.admin {
-  pointer-events: auto !important; /* Make unavailable dates clickable for admin */
+/* Specific styles for Manchester unavailable dates */
+.react-calendar__tile--unavailable.manchester {
+  background: #c8e066; /* Green background for Manchester */
 }
 
-/* green #c8e066 */
-/* blue #3794fe */
+/* Specific styles for Red Lion unavailable dates */
+.react-calendar__tile--unavailable.redlion {
+  background: #ff4d4d; /* Red background for Red Lion */
+}
