@@ -20,10 +20,10 @@ ul {
 
 .announcements-title {
   color: #000000;
-  font-family: "Arial", sans-serif; /* Change to your preferred font */
-  font-size: 2rem; /* Adjust the font size as needed */
+  font-family: "Merriweather", serif;
+  font-size: 2.2rem; /* Adjust the font size as needed */
   text-align: center; /* Center the title */
-  margin-bottom: 16px; /* Add space below the title */
+  margin-bottom: 32px; /* Add space below the title */
 }
 
 .message-item {
@@ -33,4 +33,28 @@ ul {
   border-radius: 5px;
   font-size: 1rem;
   color: #555;
+}
+
+/* Button Styling */
+.account-balance-button {
+  display: block; /* Make it occupy full width if needed */
+  margin: 0 auto 30px; /* Center align and add bottom margin for spacing */
+  padding: 12px 48px; /* Adjust padding for size */
+  font-size: 18px; /* Font size for button text */
+  border-radius: 50px; /* Rounded corners */
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  cursor: pointer; /* Show pointer on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth hover effects */
+}
+
+.account-balance-button:hover {
+  background-color: #0056b3; /* Darker shade for hover */
+  transform: translateY(-3px); /* Slight lift on hover */
+}
+
+.account-balance-button:active {
+  background-color: #003f7f; /* Even darker shade for active state */
+  transform: translateY(1px); /* Push down slightly */
 }

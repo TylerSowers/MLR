@@ -12,6 +12,8 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import CancelIcon from "@mui/icons-material/Cancel";
+import AccountBalanceButton from "./balancebutton"; // Adjust the path as needed
+
 import "./messages.css";
 
 const Message = ({ token }) => {
@@ -103,8 +105,12 @@ const Message = ({ token }) => {
   return (
     <div className="customer-messages-container">
       {/* Title for the message list */}
-      <h2 className="announcement-title">Announcements</h2>
+      <h2 className="announcements-title">Announcements</h2>
 
+      {/* Add the Account Balance Button */}
+      <AccountBalanceButton />
+
+      {/* Rest of the component */}
       <ul>
         {messages.length > 0 ? (
           messages.map((message) => (
@@ -153,6 +159,7 @@ const Message = ({ token }) => {
         )}
       </ul>
 
+      {/* Additional token-dependent content */}
       {token && (
         <div>
           <input

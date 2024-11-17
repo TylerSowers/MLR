@@ -1,5 +1,3 @@
-// src/components/Consign.jsx
-
 import React, { useState, useEffect } from "react";
 import {
   Typography,
@@ -7,13 +5,7 @@ import {
   Paper,
   Card,
   CardContent,
-  Grid,
-  Button,
-  Box,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle
+  Grid
 } from "@mui/material";
 import Calendar from "./calendar";
 import Message from "./messages";
@@ -28,23 +20,13 @@ import ChildFriendlyIcon from "@mui/icons-material/ChildFriendly";
 
 const Consign = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [openDialog, setOpenDialog] = useState(false); // State to control the Dialog visibility
 
-  // Ensure the token is updated if it changes in localStorage
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken !== token) {
       setToken(storedToken);
     }
   }, [token]);
-
-  const handleOpenDialog = () => {
-    setOpenDialog(true); // Open the Dialog
-  };
-
-  const handleCloseDialog = () => {
-    setOpenDialog(false); // Close the Dialog
-  };
 
   const policyPoints = [
     {
@@ -59,7 +41,6 @@ const Consign = () => {
         "Once an item sells, you will get 50% of the selling price. Your money can be used as store credit to purchase items any time. You may cash your account once a month ONLY BETWEEN the 15th - 20th of the month. Amounts over $30 will be issued a check, under $30 will be given cash.",
       icon: <Money style={{ fontSize: 80, color: "green" }} />
     },
-
     {
       title: "Prepare Items",
       description:
@@ -118,7 +99,6 @@ const Consign = () => {
           {policyPoints.map((point, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card variant="outlined">
-                {/* Use a div to display the icon */}
                 <div style={{ textAlign: "center", padding: "16px" }}>
                   {point.icon}
                 </div>
@@ -132,78 +112,7 @@ const Consign = () => {
             </Grid>
           ))}
         </Grid>
-
-        {/* Button to trigger Dialog */}
-        <Container sx={{ textAlign: "center", mt: 4 }}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 3,
-              mt: 3
-            }}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleOpenDialog} // Open the Dialog when clicked
-              sx={{
-                padding: "16px 48px",
-                fontSize: "18px",
-                minWidth: "300px",
-                borderRadius: "50px"
-              }}
-            >
-              Check Your Account Balance
-            </Button>
-          </Box>
-        </Container>
       </Paper>
-
-      {/* Dialog Box with the two buttons stacked */}
-      <Dialog
-        open={openDialog}
-        onClose={handleCloseDialog}
-        maxWidth="sm"
-        fullWidth
-      >
-        <DialogTitle>Check Your Account Balance</DialogTitle>
-        <DialogContent>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column", // Stack buttons vertically
-              gap: 2, // Add spacing between buttons
-              alignItems: "center" // Center the buttons
-            }}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              href="http://mlr.peeps2go.com:9090/act?fbclid=IwAR0ZSa37tYvyTBDjP-Wkg0AWcIjvADZk_JJ4vqqieXQO8VOvOgSyN6EQkBE"
-              target="_blank"
-              sx={{ padding: "8px 24px" }}
-            >
-              MLR Manchester
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              href="http://mlr2.peeps2go.com:9090/act?fbclid=IwAR2X4wGN3BUk-eCQc4Wc3I8KCgLDq8mwgynbvsmW9d4Wa57HYOHBGIcFpdg"
-              target="_blank"
-              sx={{ padding: "8px 45px" }}
-            >
-              MLR Red Lion
-            </Button>
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog} color="secondary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Container>
   );
 };
