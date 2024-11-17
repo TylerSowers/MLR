@@ -9,6 +9,8 @@ import {
   Container
 } from "@mui/material";
 
+import "./balancebutton.css";
+
 const AccountBalanceButton = () => {
   const [openDialog, setOpenDialog] = useState(false);
 

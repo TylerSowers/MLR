@@ -34,27 +34,3 @@ ul {
   font-size: 1rem;
   color: #555;
 }
-
-/* Button Styling */
-.account-balance-button {
-  display: block; /* Make it occupy full width if needed */
-  margin: 0 auto 30px; /* Center align and add bottom margin for spacing */
-  padding: 12px 48px; /* Adjust padding for size */
-  font-size: 18px; /* Font size for button text */
-  border-radius: 50px; /* Rounded corners */
-  background-color: #007bff; /* Button background color */
-  color: white; /* Button text color */
-  border: none; /* Remove border */
-  cursor: pointer; /* Show pointer on hover */
-  transition: background-color 0.3s, transform 0.2s; /* Smooth hover effects */
-}
-
-.account-balance-button:hover {
-  background-color: #0056b3; /* Darker shade for hover */
-  transform: translateY(-3px); /* Slight lift on hover */
-}
-
-.account-balance-button:active {
-  background-color: #003f7f; /* Even darker shade for active state */
-  transform: translateY(1px); /* Push down slightly */
-}
