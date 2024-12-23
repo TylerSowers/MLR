@@ -10,7 +10,14 @@ dotenv.config(); // Load environment variables from .env file
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // Allow all origins
+    methods: "GET,POST,PUT,DELETE", // Allow common HTTP methods
+    allowedHeaders:
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization" // Allow common headers
+  })
+);
 app.use(express.json());
 
 const JWT_SECRET = process.env.JWT_SECRET; // Access the secret key from environment variables

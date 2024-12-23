@@ -50,7 +50,7 @@ const LiveCalendar = ({ token }) => {
 
     try {
       await axios.post(
-        `https://mlr-backend.vercel.app/api${endpoint}`,
+        `https://mlr-backend.vercel.app/${endpoint}`,
         { date: dateToAdd },
         {
           headers: {
