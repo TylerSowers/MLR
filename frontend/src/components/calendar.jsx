@@ -50,7 +50,7 @@ const LiveCalendar = ({ token }) => {
 
     try {
       await axios.post(
-        `https://mlr-backend.vercel.app/${endpoint}`,
+        `https://mlr-backend.vercel.app${endpoint}`,
         { date: dateToAdd },
         {
           headers: {
@@ -76,7 +76,7 @@ const LiveCalendar = ({ token }) => {
     const dateToRemove = selectedDate;
 
     try {
-      await axios.delete(`https://mlr-backend.vercel.app/api${endpoint}`, {
+      await axios.delete(`https://mlr-backend.vercel.app${endpoint}`, {
         data: { date: dateToRemove },
         headers: {
           Authorization: `Bearer ${token || localStorage.getItem("token")}`

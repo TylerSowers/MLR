@@ -10,14 +10,7 @@ dotenv.config(); // Load environment variables from .env file
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: "*", // Allow all origins
-    methods: "GET,POST,PUT,DELETE", // Allow common HTTP methods
-    allowedHeaders:
-      "Origin, X-Requested-With, Content-Type, Accept, Authorization" // Allow common headers
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 const JWT_SECRET = process.env.JWT_SECRET; // Access the secret key from environment variables
@@ -69,39 +62,39 @@ app.post("/api/login", async (req, res) => {
 });
 
 /// User Registration with optional isAdmin field
-// app.post("/api/register", async (req, res) => {
-//   const { username, password, isAdmin } = req.body;
+app.post("/api/register", async (req, res) => {
+  const { username, password, isAdmin } = req.body;
 
-//   if (!username || !password) {
-//     return res
-//       .status(400)
-//       .json({ message: "Username and password are required" });
-//   }
+  if (!username || !password) {
+    return res
+      .status(400)
+      .json({ message: "Username and password are required" });
+  }
 
-//   try {
-//     // Check if user already exists
-//     const existingUser = await User.findOne({ username });
-//     if (existingUser) {
-//       return res.status(400).json({ message: "Username already taken" });
-//     }
+  try {
+    // Check if user already exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: "Username already taken" });
+    }
 
-//     // Hash the password before saving
-//     const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash the password before saving
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-//     // Create and save the new user
-//     const newUser = new User({
-//       username,
-//       password: hashedPassword,
-//       isAdmin: isAdmin || false // Set isAdmin if provided, otherwise default to false
-//     });
+    // Create and save the new user
+    const newUser = new User({
+      username,
+      password: hashedPassword,
+      isAdmin: isAdmin || false // Set isAdmin if provided, otherwise default to false
+    });
 
-//     await newUser.save();
-//     res.status(201).json({ message: "User registered successfully" });
-//   } catch (error) {
-//     console.error("Error registering user:", error);
-//     res.status(500).json({ message: error.message });
-//   }
-// });
+    await newUser.save();
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error("Error registering user:", error);
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // Middleware to check token
 const authenticateToken = (req, res, next) => {

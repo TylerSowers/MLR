@@ -74,7 +74,7 @@ const Message = ({ token }) => {
 
   const handleEditMessage = async () => {
     try {
-      await axios.patch(
+      await axios.put(
         `https://mlr-backend.vercel.app/api/messages/${editMessageId}`,
         { content: editContent },
         { headers: { Authorization: `Bearer ${token}` } }
