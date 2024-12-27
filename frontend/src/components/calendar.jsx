@@ -177,10 +177,9 @@ const LiveCalendar = ({ token }) => {
             value={selectedHours}
             onChange={(e) => setSelectedHours(e.target.value)}
           >
-            <MenuItem value="9:00AM - 6:00PM">9:00AM - 6:00PM</MenuItem>
+            <MenuItem value="9:00AM - 6:45PM">9:00AM - 6:45PM</MenuItem>
+            <MenuItem value="9:00AM - 3:45PM">9:00AM - 3:45PM</MenuItem>
             <MenuItem value="9:00AM - 5:30PM">9:00AM - 5:30PM</MenuItem>
-            <MenuItem value="10:00AM - 4:00PM">10:00AM - 4:00PM</MenuItem>
-            <MenuItem value="12:00PM - 8:00PM">12:00PM - 8:00PM</MenuItem>
           </Select>
         </FormControl>
         <DialogActions>
