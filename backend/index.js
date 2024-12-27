@@ -29,16 +29,26 @@ const userSchema = new mongoose.Schema({
 });
 
 const dateSchema = new mongoose.Schema({
-  date: { type: Date, required: true }
+  date: { type: Date, required: true, unique: true },
+  hours: { type: String, default: "9:00AM - 6:45PM" } // Add the hours field
 });
+
 const RLdateSchema = new mongoose.Schema({
-  date: { type: Date, required: true }
+  date: { type: Date, required: true, unique: true },
+  hours: { type: String, default: "9:00AM - 5:30PM" } // Add the hours field
 });
 
 const messageSchema = new mongoose.Schema({
   content: { type: String, required: true },
   datePosted: { type: Date, default: Date.now }
 });
+
+const DropOffHoursSchema = new mongoose.Schema({
+  date: { type: String, required: true, unique: true },
+  hours: { type: String, required: true }
+});
+
+const DropOffHours = mongoose.model("DropOffHours", DropOffHoursSchema);
 
 const Message = mongoose.model("Message", messageSchema);
 const User = mongoose.model("User", userSchema);
@@ -120,27 +130,6 @@ app.get("/api/dates", async (req, res) => {
   }
 });
 
-// Update crossed-off dates (protected)
-app.post("/api/dates", authenticateToken, async (req, res) => {
-  const { date } = req.body;
-  if (!req.user.isAdmin) {
-    return res.status(403).json({ message: "Access forbidden: Admins only" });
-  }
-
-  try {
-    const existingDate = await DateModel.findOne({ date });
-    if (existingDate) {
-      await DateModel.deleteOne({ date });
-      res.json({ message: "Date removed for Manchester" });
-    } else {
-      await DateModel.create({ date });
-      res.json({ message: "Date added for Manchester" });
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
 // Fetch crossed-off dates
 app.get("/api/rldates", async (req, res) => {
   try {
@@ -151,9 +140,30 @@ app.get("/api/rldates", async (req, res) => {
   }
 });
 
-// Update crossed-off dates (protected)
+app.post("/api/dates", authenticateToken, async (req, res) => {
+  const { date, hours } = req.body;
+  if (!req.user.isAdmin) {
+    return res.status(403).json({ message: "Access forbidden: Admins only" });
+  }
+
+  try {
+    const existingDate = await DateModel.findOne({ date });
+    if (existingDate) {
+      existingDate.hours = hours || existingDate.hours;
+      await existingDate.save();
+      res.json({ message: "Date updated for Manchester", date: existingDate });
+    } else {
+      const newDate = await DateModel.create({ date, hours });
+      res.json({ message: "Date added for Manchester", date: newDate });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Update crossed-off dates (Red Lion, protected)
 app.post("/api/rldates", authenticateToken, async (req, res) => {
-  const { date } = req.body;
+  const { date, hours } = req.body;
   if (!req.user.isAdmin) {
     return res.status(403).json({ message: "Access forbidden: Admins only" });
   }
@@ -161,11 +171,12 @@ app.post("/api/rldates", authenticateToken, async (req, res) => {
   try {
     const existingDate = await RLDateModel.findOne({ date });
     if (existingDate) {
-      await RLDateModel.deleteOne({ date });
-      res.json({ message: "Date removed for Red Lion" });
+      existingDate.hours = hours || existingDate.hours;
+      await existingDate.save();
+      res.json({ message: "Date updated for Red Lion", date: existingDate });
     } else {
-      await RLDateModel.create({ date });
-      res.json({ message: "Date added for Red Lion" });
+      const newDate = await RLDateModel.create({ date, hours });
+      res.json({ message: "Date added for Red Lion", date: newDate });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

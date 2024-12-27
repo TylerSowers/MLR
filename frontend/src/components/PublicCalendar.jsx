@@ -9,20 +9,16 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Button,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel
+  Button
 } from "@mui/material";
 
-const LiveCalendar = ({ token }) => {
+const PublicCalendar = () => {
   const [manchesterDates, setManchesterDates] = useState([]);
   const [redLionDates, setRedLionDates] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentStore, setCurrentStore] = useState(""); // Manchester or Red Lion
   const [openDialog, setOpenDialog] = useState(false);
-  const [selectedHours, setSelectedHours] = useState("9:00AM - 6:00PM"); // Default hours
+  const [selectedHours, setSelectedHours] = useState(null);
 
   useEffect(() => {
     fetchUnavailableDates();
@@ -45,72 +41,17 @@ const LiveCalendar = ({ token }) => {
   const handleDateClick = (date, store) => {
     setSelectedDate(date);
     setCurrentStore(store);
+
+    const storeDates = store === "Manchester" ? manchesterDates : redLionDates;
+    const dateFound = storeDates.find(
+      (d) => new Date(d.date).toDateString() === date.toDateString()
+    );
+    if (dateFound) {
+      setSelectedHours(dateFound.hours);
+    } else {
+      setSelectedHours(null);
+    }
     setOpenDialog(true);
-  };
-
-  const handleAddDate = async () => {
-    const endpoint =
-      currentStore === "Manchester" ? "/api/dates" : "/api/rldates";
-    const dateToAdd = selectedDate;
-
-    try {
-      await axios.post(
-        `https://mlr-backend.vercel.app${endpoint}`,
-        { date: dateToAdd, hours: selectedHours },
-        {
-          headers: {
-            Authorization: `Bearer ${token || localStorage.getItem("token")}`
-          }
-        }
-      );
-
-      if (currentStore === "Manchester") {
-        setManchesterDates((prevDates) => [
-          ...prevDates,
-          { date: dateToAdd, hours: selectedHours }
-        ]);
-      } else {
-        setRedLionDates((prevDates) => [
-          ...prevDates,
-          { date: dateToAdd, hours: selectedHours }
-        ]);
-      }
-      setOpenDialog(false);
-    } catch (error) {
-      console.error("Error adding date:", error);
-    }
-  };
-
-  const handleRemoveDate = async () => {
-    const endpoint =
-      currentStore === "Manchester" ? "/api/dates" : "/api/rldates";
-    const dateToRemove = selectedDate;
-
-    try {
-      await axios.delete(`https://mlr-backend.vercel.app${endpoint}`, {
-        data: { date: dateToRemove },
-        headers: {
-          Authorization: `Bearer ${token || localStorage.getItem("token")}`
-        }
-      });
-
-      if (currentStore === "Manchester") {
-        setManchesterDates((prevDates) =>
-          prevDates.filter(
-            (d) => new Date(d.date).getTime() !== dateToRemove.getTime()
-          )
-        );
-      } else {
-        setRedLionDates((prevDates) =>
-          prevDates.filter(
-            (d) => new Date(d.date).getTime() !== dateToRemove.getTime()
-          )
-        );
-      }
-      setOpenDialog(false);
-    } catch (error) {
-      console.error("Error removing date:", error);
-    }
   };
 
   const getTileContent = (date, store) => {
@@ -152,48 +93,9 @@ const LiveCalendar = ({ token }) => {
     }
   };
 
-  const getDialogOptions = () => {
-    // Only proceed if selectedDate is not null
-    if (!selectedDate) {
-      return null; // You can return a loading or error message here if needed
-    }
-
-    const storeDates =
-      currentStore === "Manchester" ? manchesterDates : redLionDates;
-    const dateAlreadyExists = storeDates.some(
-      (d) => new Date(d.date).toDateString() === selectedDate.toDateString()
-    );
-
-    return dateAlreadyExists ? (
-      <DialogActions>
-        <Button onClick={handleRemoveDate}>Delete</Button>
-        <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
-      </DialogActions>
-    ) : (
-      <>
-        <FormControl fullWidth>
-          <InputLabel>Drop-Off Hours</InputLabel>
-          <Select
-            value={selectedHours}
-            onChange={(e) => setSelectedHours(e.target.value)}
-          >
-            <MenuItem value="9:00AM - 6:00PM">9:00AM - 6:00PM</MenuItem>
-            <MenuItem value="9:00AM - 5:30PM">9:00AM - 5:30PM</MenuItem>
-            <MenuItem value="10:00AM - 4:00PM">10:00AM - 4:00PM</MenuItem>
-            <MenuItem value="12:00PM - 8:00PM">12:00PM - 8:00PM</MenuItem>
-          </Select>
-        </FormControl>
-        <DialogActions>
-          <Button onClick={handleAddDate}>Add</Button>
-          <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
-        </DialogActions>
-      </>
-    );
-  };
-
   return (
     <div className="consign-container">
-      <h2>Manage Walk-In Dates</h2>
+      <h2>Click Dates to See Walk-In Times</h2>
       <div className="calendar-wrapper">
         <div className="calendar-container">
           <h3>Manchester</h3>
@@ -222,12 +124,17 @@ const LiveCalendar = ({ token }) => {
           {currentStore} - {selectedDate && selectedDate.toDateString()}
         </DialogTitle>
         <DialogContent>
-          <p>Choose an option for the selected date:</p>
-          {getDialogOptions()}
+          <p>Drop-Off Hours for the selected date:</p>
+          <p>
+            {selectedHours ? selectedHours : "No drop-off times for this date"}
+          </p>
+          <DialogActions>
+            <Button onClick={() => setOpenDialog(false)}>Close</Button>
+          </DialogActions>
         </DialogContent>
       </Dialog>
     </div>
   );
 };
 
-export default LiveCalendar;
+export default PublicCalendar;

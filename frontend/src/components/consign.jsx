@@ -8,6 +8,7 @@ import {
   Grid
 } from "@mui/material";
 import Calendar from "./calendar";
+import PublicCalendar from "./PublicCalendar";
 import Message from "./messages";
 import Money from "@mui/icons-material/AttachMoney";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -17,14 +18,21 @@ import AcUnitIcon from "@mui/icons-material/AcUnit";
 import ChildCareIcon from "@mui/icons-material/ChildCare";
 import ReportIcon from "@mui/icons-material/Report";
 import ChildFriendlyIcon from "@mui/icons-material/ChildFriendly";
+import { jwtDecode } from "jwt-decode";
 
 const Consign = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken !== token) {
       setToken(storedToken);
+    }
+
+    if (storedToken) {
+      const decodedToken = jwtDecode(storedToken);
+      setIsAdmin(decodedToken.isAdmin);
     }
   }, [token]);
 
@@ -84,7 +92,7 @@ const Consign = () => {
   return (
     <Container>
       <Message token={token} />
-      <Calendar token={token} />
+      {isAdmin ? <Calendar token={token} /> : <PublicCalendar />}
       <Paper elevation={3} style={{ padding: "16px", marginTop: "16px" }}>
         <Typography
           variant="h5"
