@@ -202,6 +202,7 @@ const LiveCalendar = ({ token }) => {
             tileContent={({ date, view }) =>
               view === "month" && getTileContent(date, "Manchester")
             }
+            locale="en-US" // Set the first day of the week to Sunday
           />
         </div>
         <div className="calendar-container">
@@ -212,6 +213,7 @@ const LiveCalendar = ({ token }) => {
             tileContent={({ date, view }) =>
               view === "month" && getTileContent(date, "Red Lion")
             }
+            locale="en-US" // Set the first day of the week to Sunday
           />
         </div>
       </div>
