@@ -10,6 +10,7 @@ import {
 import Calendar from "./calendar";
 import PublicCalendar from "./PublicCalendar";
 import Message from "./messages";
+import Ad from "./Ad"; // Import the Ad component
 import Money from "@mui/icons-material/AttachMoney";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LocalLaundryServiceIcon from "@mui/icons-material/LocalLaundryService";
@@ -23,6 +24,7 @@ import { jwtDecode } from "jwt-decode";
 const Consign = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdVisible, setIsAdVisible] = useState(false); // State to control ad visibility
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -34,6 +36,12 @@ const Consign = () => {
       const decodedToken = jwtDecode(storedToken);
       setIsAdmin(decodedToken.isAdmin);
     }
+
+    // Set ad visibility based on time period
+    const currentDate = new Date();
+    const startDate = new Date("2025-04-01"); // Start date for the ad
+    const endDate = new Date("2025-04-30"); // End date for the ad
+    setIsAdVisible(currentDate >= startDate && currentDate <= endDate);
   }, [token]);
 
   const policyPoints = [
@@ -91,7 +99,15 @@ const Consign = () => {
 
   return (
     <Container>
+      {isAdVisible && (
+        <Ad
+          title="MLR is in the top 5 for the 2025 York-Hanover Community's Choice Awards!"
+          link="https://ydr.gannettcontests.com/2025-York--Hanover-Communitys-Choice-Awards/gallery/?group=512542&fbclid=IwY2xjawJr5XNleHRuA2FlbQIxMAABHhutSnbkz30fDNjkmi8mXKga8mvn2cNAlq-BBO3Oq2IAOMQ83ZMAbAhf_BlV_aem_OsYHgBHJez7HqW-cdBSvEQ" // Replace with your ad link
+          isVisible={isAdVisible}
+        />
+      )}
       <Message token={token} />
+
       {isAdmin ? <Calendar token={token} /> : <PublicCalendar />}
       <Paper elevation={3} style={{ padding: "16px", marginTop: "16px" }}>
         <Typography
