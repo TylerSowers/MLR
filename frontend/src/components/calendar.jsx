@@ -179,7 +179,7 @@ const LiveCalendar = ({ token }) => {
           >
             <MenuItem value="9:00AM - 6:45PM">9:00AM - 6:45PM</MenuItem>
             <MenuItem value="9:00AM - 3:45PM">9:00AM - 3:45PM</MenuItem>
-            <MenuItem value="9:00AM - 6:00PM">9:00AM - 5:00PM</MenuItem>
+            <MenuItem value="9:00AM - 5:00PM">9:00AM - 5:00PM</MenuItem>
             <MenuItem value="9:00AM - 5:30PM">9:00AM - 5:30PM</MenuItem>
             <MenuItem value="9:30AM - 5:30PM">9:30AM - 5:30PM</MenuItem>
             <MenuItem value="9:00AM - 6:00PM">9:00AM - 6:00PM</MenuItem>
