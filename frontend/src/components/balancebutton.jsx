@@ -68,7 +68,7 @@ const AccountBalanceButton = () => {
               className="account-balance-button"
               variant="contained"
               color="primary"
-              href="http://mlr.peeps2go.com:9090/act?fbclid=IwAR0ZSa37tYvyTBDjP-Wkg0AWcIjvADZk_JJ4vqqieXQO8VOvOgSyN6EQkBE"
+              href="http://mlr.peeps2go.com:9090/act"
               target="_blank"
               sx={{ padding: "8px 24px" }}
             >
@@ -78,7 +78,7 @@ const AccountBalanceButton = () => {
               className="account-balance-button"
               variant="contained"
               color="primary"
-              href="http://mlr2.peeps2go.com:9090/act?fbclid=IwAR2X4wGN3BUk-eCQc4Wc3I8KCgLDq8mwgynbvsmW9d4Wa57HYOHBGIcFpdg"
+              href="http://mlr2.peeps2go.com:9090/act"
               target="_blank"
               sx={{ padding: "8px 45px" }}
             >
