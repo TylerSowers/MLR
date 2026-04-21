@@ -1,25 +1,25 @@
 import React from "react";
-import homeImage from "../media/setup2.jpg";
+// import homeImage from "../media/setup2.jpg";
 import setup from "../media/setup.jpg"; // Example image path
 import setup2 from "../media/home2.jpg";
 import setup3 from "../media/setup3.jpg";
 import setup5 from "../media/setup5.jpg";
 import toys from "../media/toys.jpg";
 import toys2 from "../media/toys2.jpg"; // Example image path
-import policyImage from "../media/policy.png"; // Policy image path
+// import policyImage from "../media/policy.png"; // Policy image path
 import Carousel from "react-material-ui-carousel";
 import {
   Typography,
   Box,
-  Button,
+  // Button,
   Container,
   Paper,
   Divider,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails
+  // Accordion,
+  // AccordionSummary,
+  // AccordionDetails
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Home = () => {
   const carouselItems = [
