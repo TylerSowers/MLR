@@ -25,11 +25,8 @@ const Message = ({ token }) => {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [messageToDelete, setMessageToDelete] = useState(null);
 
-  useEffect(() => {
-    fetchMessages();
-  }, [token]);
 
-  const fetchMessages = async () => {
+  const fetchMessages = React.useCallback(async () => {
     try {
       const response = await axios.get(
         "https://mlr-backend.vercel.app/api/messages",
@@ -41,7 +38,11 @@ const Message = ({ token }) => {
     } catch (error) {
       console.error("Error fetching messages:", error);
     }
-  };
+  }, [token]);
+
+  useEffect(() => {
+    fetchMessages();
+  }, [fetchMessages]);
 
   const handleAddMessage = async () => {
     try {
