@@ -68,7 +68,7 @@ const AccountBalanceButton = () => {
               className="account-balance-button"
               variant="contained"
               color="primary"
-              href="http://mlr.peeps2go.com:9090/act"
+              href="https://mlr.peeps2gogo.com/act"
               target="_blank"
               sx={{ padding: "8px 24px" }}
             >
@@ -78,7 +78,7 @@ const AccountBalanceButton = () => {
               className="account-balance-button"
               variant="contained"
               color="primary"
-              href="https://mlr2.peeps2gogo.com/h"
+              href="https://mlr2.peeps2gogo.com/act"
               target="_blank"
               sx={{ padding: "8px 45px" }}
             >
